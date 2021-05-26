@@ -1,0 +1,13 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.ssh.username = 'vagrant'
+  config.ssh.password = 'vagrant'
+  config.ssh.insert_key = false
+  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 21000, host: 21000
+
+  config.vm.provider "virtualbox" do |v|
+     v.customize ["modifyvm", :id, "--memory", "8048"]
+     v.customize ["modifyvm", :id, "--cpus", "2"]
+  end
+end
