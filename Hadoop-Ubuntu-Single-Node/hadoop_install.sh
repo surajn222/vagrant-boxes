@@ -72,7 +72,7 @@ sudo -u $hdUserName cat /home/$hdUserName/.ssh/id_rsa.pub >> /home/$hdUserName/.
 download_hadoop()
 {
 #Download hadoop2.7.3 from apache
-#sudo wget http://archive.apache.org/dist/hadoop/core/hadoop-2.7.3/hadoop-2.7.3.tar.gz  
+sudo wget https://archive.apache.org/dist/hadoop/core/hadoop-2.7.3/hadoop-2.7.3.tar.gz  
 sudo tar xvfz hadoop-2.7.3.tar.gz
 
 }
