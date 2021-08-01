@@ -167,6 +167,9 @@ start_hadoop()
 sudo -u hduser /usr/local/lib/hadoop/bin/hdfs namenode -format
 sudo -u hduser /usr/local/lib/hadoop/sbin/start-dfs.sh
 sudo -u hduser /usr/local/lib/hadoop/sbin/start-yarn.sh
+
+
+
 }
 
 update_system
