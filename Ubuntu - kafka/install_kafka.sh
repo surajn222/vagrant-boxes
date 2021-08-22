@@ -90,6 +90,14 @@ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic testTopi
 }
 
 
+setup_kafka_gui()
+{
+git clone https://github.com/provectus/kafka-ui.git
+cd kafka-ui
+./mvnw spring-boot:run -Pprod
+
+}
+
 update_system
 download_kafka
 configure_system
