@@ -1,16 +1,11 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-18.04"
   config.ssh.username = 'vagrant'
-  config.ssh.password = 'vagrant'
+  #config.ssh.password = 'vagrant'
   config.ssh.insert_key = false
   config.vm.network :forwarded_port, guest: 80, host: 8080
   config.vm.network :forwarded_port, guest: 21000, host: 21000
-
-  config.vm.provision "shell", inline: <<-SHELL
-   sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-   sudo systemctl restart sshd.service
-  SHELL
-  #config.vm.provision "shell", path: "./install_kafka.sh"
+  config.vm.provision "shell", path: "./install_kafdrop.sh"
 
   config.vm.provider "virtualbox" do |v|
      v.customize ["modifyvm", :id, "--memory", "4048"]
