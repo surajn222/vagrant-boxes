@@ -2,13 +2,13 @@
 from kafka import KafkaProducer
 
 # Define server with port
-bootstrap_servers=['localhost:9092']
+bootstrap_servers = ['localhost:9092']
 
 # Define topic name where the message will publish
-topicName='First_Topic'
+topicName = 'First_Topic'
 
 # Initialize producer variable
-producer=KafkaProducer(bootstrap_servers=bootstrap_servers)
+producer = KafkaProducer(bootstrap_servers = bootstrap_servers)
 
 # Publish text in defined topic
 producer.send(topicName, b'Hello from kafka...')

@@ -1,18 +1,15 @@
 #Install Kafka
-update_and_setup_system()
+update_system()
 {
 sudo apt update -y
 #sudo apt install default-jdk -y
 sudo apt-get install systemd -y
 
-sudo add-apt-repository ppa:openjdk-r/ppa -y
+sudo add-apt-repository ppa:openjdk-r/ppa
 sudo apt-get update -y
 #sudo apt install openjdk-9-jre -y
 sudo apt install openjdk-11-jdk -y
 
-update-alternatives --install /usr/bin/python python /usr/bin/python3
-sudo apt-get -y install python3-pip
-pip3 install kafka
 }
 
 download_kafka()
@@ -71,20 +68,13 @@ systemctl daemon-reload
 
 restart_services()
 {
-sudo systemctl stop kafka
-echo "kafka stopped"
 sudo systemctl stop zookeeper
-echo "zookeeper stopped"
+sudo systemctl stop kafka
 
 sudo systemctl start zookeeper
-echo "zookeeper started"
-sudo systemctl status zookeeper
-sleep 1
-sudo systemctl stop kafka
-echo "kafka stopped"
+sleep 5
 sudo systemctl start kafka
-echo "kafka started"
-sudo systemctl status kafka
+
 
 #sudo systemctl status kafka
 #sudo systemctl status zookeeper
@@ -93,10 +83,10 @@ sudo systemctl status kafka
 create_and_access_topics()
 {
 cd /usr/local/kafka
-bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic topic_1
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic testTopic
 bin/kafka-topics.sh --list --zookeeper localhost:2181
-#bin/kafka-console-producer.sh --broker-list localhost:9092 --topic testTopic
-#bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic testTopic --from-beginning
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic testTopic
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic testTopic --from-beginning
 }
 
 
@@ -108,39 +98,8 @@ cd kafka-ui
 
 }
 
-setup_kafdrop()
-{
-cd /opt
-git clone https://github.com/obsidiandynamics/kafdrop.git
-ls
-cd kafdrop/
-ls
-pwd
-sudo apt-get install maven -y
-mvn clean -DskipTests=true package install
-mvn clean -DskipTests=true package install
-java --add-opens=java.base/sun.nio.ch=ALL-UNNAMED -jar target/kafdrop-3.28.0-SNAPSHOT.jar --kafka.brokerConnect=10.0.2.2:9093 &> kafdrop.log &
-}
-
-add_data()
-{
-    echo "Cloning git repo and initializing producer"
-    cd /opt
-    rm -rf kafka
-    git clone https://github.com/surajn222/kafka.git
-    cd kafka/python
-    python producer1.py &> producer.log &
-    python consumer1.py &> consumer.log &
-    echo "Please check /opt/kafka for logs of producer and consumer"
-
-}
-
-update_and_setup_system
+update_system
 download_kafka
 configure_system
 restart_services
-echo "Kafka is installed. Setting up kafdrop"
-setup_kafdrop
 create_and_access_topics
-##Initializing producers and consumers
-add_data
