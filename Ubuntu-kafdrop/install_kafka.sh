@@ -75,13 +75,10 @@ sudo systemctl stop kafka
 echo "kafka stopped"
 sudo systemctl stop zookeeper
 echo "zookeeper stopped"
-
 sudo systemctl start zookeeper
 echo "zookeeper started"
 sudo systemctl status zookeeper
 sleep 1
-sudo systemctl stop kafka
-echo "kafka stopped"
 sudo systemctl start kafka
 echo "kafka started"
 sudo systemctl status kafka
@@ -144,3 +141,4 @@ setup_kafdrop
 create_and_access_topics
 ##Initializing producers and consumers
 add_data
+echo "Access Kafdrop at port localhost:9000"

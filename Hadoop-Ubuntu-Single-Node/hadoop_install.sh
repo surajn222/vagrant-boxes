@@ -131,7 +131,8 @@ sudo sed -i '/<configuration>/a <property>\n\t\t<name>hadoop.tmp.dir</name>\n\t\
 sudo sed -i '/<configuration>/a <property>\n\t\t <name>mapreduce.framework.name</name>\n\t\t <value>yarn</value>\n</property>' /usr/local/lib/hadoop/etc/hadoop/mapred-site.xml
 
 #Yarn-site.xml
-sudo sed -i '/<configuration>/a <property>\n\t\t<name>yarn.nodemanager.aux-services</name>\n\t\t<value>mapreduce_shuffle</value>\n</property>' /usr/local/lib/hadoop/etc/hadoop/yarn-site.xml
+sudo sed -i '/<configuration>/a <property>\n\t\t<name>yarn.nodemanager.aux-services</name>\n\t\t<value>mapreduce_shuffle</value>\n</property><property>\n\t\t<name>yarn.nodemanager.pmem-check-enabled</name>\n\t\t<value>false</value>\n</property><property>\n\t\t<name>yarn.nodemanager.vmem-check-enabled</name>\n\t\t<value>false</value>\n</property>' /usr/local/lib/hadoop/etc/hadoop/yarn-site.xml
+
 
 JAVA_HOME="'/usr/lib/jvm/java-8-openjdk-amd64/'"
 sudo sed -i "s|\${JAVA_HOME}|$JAVA_HOME|g" /usr/local/lib/hadoop/etc/hadoop/hadoop-env.sh
@@ -151,7 +152,7 @@ HADOOP_HOME="/usr/local/lib/hadoop"
 cat <<EOT >> /home/$hdUserName/.bashrc
 export HADOOP_HOME='/usr/local/lib/hadoop'
 HADOOP_HOME="/usr/local/lib/hadoop"
-export PATH=$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin 
+export PATH=$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:/usr/local/lib/hadoop/bin/
 export HADOOP_MAPRED_HOME=${HADOOP_HOME}
 export HADOOP_COMMON_HOME=${HADOOP_HOME}
 export HADOOP_HDFS_HOME=${HADOOP_HOME}
