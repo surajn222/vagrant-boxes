@@ -125,7 +125,7 @@ configure_hadoop()
 hdUserName="hduser"
 hdGroup="hduser"
 #core-site.xml
-sudo sed -i '/<configuration>/a <property>\n\t\t<name>hadoop.tmp.dir</name>\n\t\t<value>/home/hduser/hadoop/app/hadoop/tmp</value>\n</property>\n<property>\n\t\t<name>fs.default.name</name>\n\t\t<value>hdfs://localhost:54310</value>\n</property>' /usr/local/lib/hadoop/etc/hadoop/core-site.xml
+sudo sed -i '/<configuration>/a <property>\n\t\t<name>hadoop.tmp.dir</name>\n\t\t<value>/home/hduser/hadoop/app/hadoop/tmp</value>\n</property>\n<property>\n\t\t<name>fs.default.name</name>\n\t\t<value>hdfs://localhost:50090</value>\n</property>' /usr/local/lib/hadoop/etc/hadoop/core-site.xml
 
 #mapred-site.xml
 sudo sed -i '/<configuration>/a <property>\n\t\t <name>mapreduce.framework.name</name>\n\t\t <value>yarn</value>\n</property>' /usr/local/lib/hadoop/etc/hadoop/mapred-site.xml
