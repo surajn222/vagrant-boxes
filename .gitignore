@@ -1,4 +1,4 @@
-/Ubuntu-mysql/.vagrant/
+/Ubuntu-mysql/.vagrant/*
 /Hadoop-Ubuntu-Single-Node/.vagrant/
 /Ubuntu-kafdrop/.vagrant/
 /Ubuntu-kafka/.vagrant/
