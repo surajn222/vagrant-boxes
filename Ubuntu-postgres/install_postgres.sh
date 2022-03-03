@@ -21,6 +21,19 @@ apt show postgresql
 }
 
 
+allow_connections()
+{
+  echo "This is a manual step, please make sure you do this"
+  echo '
+  In the file /etc/postgresql/14/main/postgresql.conf, edit to reflect this = listen_addresses = "*"
+  In the file /etc/postgresql/14/main/pg_hba.conf, edit to reflect this:
+  host    all             all             192.168.33.33/24        md5
+
+  Then, access via psql -h localhost -p 5432 -U postgres
+  '
+
+}
+
 set_password()
 {
 #This is a manual step
@@ -39,7 +52,8 @@ git clone https://github.com/surajn222/postgresDBSamples.git
 cd postgresDBSamples/adventureworks
 #These are manual steps
 #psql -U postgres -h 127.0.0.1 -c "CREATE DATABASE \"adventureworks\";" --password is postgres
-#psql -U postgres -h 127.0.0.1 -c -d Adventureworks < install.sql --password is postgres
+#psql -U postgres -h 127.0.0.1 -c "\l;" --password is postgres
+#psql -U postgres -h 127.0.0.1 -d adventureworks < install.sql --password is postgres
 }
 
 create_mysql_fdw()
@@ -71,5 +85,6 @@ install_postgres
 setup_database
 create_file_fdw
 create_mysql_fdw
+allow_connections
 
-echo -e "\n\n\nPlease check the functions of set_password and setup_database and create_file_fdw and create_mysql_fdw"
+echo -e "\n\n\nPlease check the functions of set_password and setup_database and create_file_fdw and create_mysql_fdw and allow_connections"
