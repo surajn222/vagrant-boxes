@@ -1,0 +1,20 @@
+Get Ubuntu gui machine
+
+Download and unzip hammerdb
+
+In hammerdbcli, you have to run librarycheck to check for drivers
+
+http://manpages.ubuntu.com/manpages/bionic/man3/mysqltcl.3.html
+
+this will give you the correct library, place that in the mysql folder and remove the existing one
+
+
+then, we need to do this:
+
+https://blog.remibergsma.com/2013/05/03/forwarding-a-local-mysql-socket-to-a-remote-mysql-server/
+
+
+socat UNIX-LISTEN:/mysql.sock,fork,\
+reuseaddr,unlink-early,user=mysql,group=mysql,mode=777 \
+TCP:127.0.0.1:3306 &
+
