@@ -2,14 +2,22 @@ Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-18.04"
   config.ssh.password = 'vagrant'
   config.ssh.insert_key = false
-  #config.vm.network :forwarded_port, guest: 80, host: 8080
-  #config.vm.network :forwarded_port, guest: 21000, host: 21000
   config.vm.network :forwarded_port, guest: 3306, host: 3306
-  config.vm.network :forwarded_port, guest: 5439, host: 5439
-  config.vm.provision "shell", path: "./install-mysql.sh"
+  #config.vm.provision "shell", path: "./install-mysql.sh"
 
   config.vm.provider "virtualbox" do |v|
      v.customize ["modifyvm", :id, "--memory", "4048"]
      v.customize ["modifyvm", :id, "--cpus", "2"]
+     v.gui = true
   end
+
+  config.vm.provision "shell", inline: "sudo apt-get update"
+  config.vm.provision "shell", inline: "sudo apt-get install -y xfce4 virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11"
+  # Permit anyone to start the GUI
+  config.vm.provision "shell", inline: "sudo sed -i 's/allowed_users=.*$/allowed_users=anybody/' /etc/X11/Xwrapper.config"
+
 end
+
+#To start ethe VM:
+#Open Oracle Box, and you will be able to see the GUI there
+#Run the command startx, in the vagrant user
