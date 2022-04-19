@@ -54,6 +54,9 @@ cd postgresDBSamples/adventureworks
 #psql -U postgres -h 127.0.0.1 -c "CREATE DATABASE \"adventureworks\";" --password is postgres
 #psql -U postgres -h 127.0.0.1 -c "\l;" --password is postgres
 #psql -U postgres -h 127.0.0.1 -d adventureworks < install.sql --password is postgres
+#psql -U postgres -h 127.0.0.1 -d chinook < Chinook_PostgreSql.sql
+#psql -U postgres -h 127.0.0.1 -c "CREATE DATABASE \"world\";"
+#psql -U postgres -h 127.0.0.1 -d world < world.sql
 }
 
 create_mysql_fdw()
