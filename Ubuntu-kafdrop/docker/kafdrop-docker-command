@@ -1,0 +1,1 @@
+kubectl run kafdrop --image=obsidiandynamics/kafdrop --env KAFKA_BROKERCONNECT=ib-kafka-0:9092 --env JVM_OPTS="-Xms32M -Xmx64M"  --env SERVER_SERVLET_CONTEXTPATH="/"  --port=9000 -n ib-kafka

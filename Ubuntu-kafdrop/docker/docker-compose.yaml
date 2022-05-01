@@ -13,21 +13,21 @@ services:
           memory: 512M
         reservations:
           cpus: '0.5'
-          memory: 1000M
-#  kafka:
-#    image: wurstmeister/kafka
-#    container_name: kafka
-#    ports:
-#      - "9092:9092"
-#    environment:
-#      KAFKA_ADVERTISED_HOST_NAME: localhost
-#      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-#      KAFKA_HEAP_OPTS: -Xmx300M -Xms300M
-#    deploy:
-#      resources:
-#        limits:
-#          cpus: '0.1'
-#          memory: 512M
-#        reservations:
-#          cpus: '0.1'
-#          memory: 1000M
+          memory: 512M
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_HEAP_OPTS: -Xmx300M -Xms300M
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 512M
