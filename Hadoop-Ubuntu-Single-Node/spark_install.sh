@@ -51,6 +51,12 @@ sudo -u hduser $SPARK_HOME/sbin/start-workers.sh spark://localhost:7077
 
 sudo -u hduser $SPARK_HOME/bin/spark-submit --master yarn --executor-memory 1G --driver-memory 1G --conf spark.sql.warehouse.dir=\"file:///tmp/spark-warehouse\" --packages com.databricks:spark-csv_2.11:1.5.0 --packages com.amazonaws:aws-java-sdk-pom:1.10.34 --packages org.apache.hadoop:hadoop-aws:2.7.3 /vagrant/test_spark.py
 sudo -u hduser $SPARK_HOME/bin/spark-submit --master yarn --conf spark.sql.warehouse.dir=\"file:///tmp/spark-warehouse\" --packages com.databricks:spark-csv_2.11:1.5.0 --packages com.amazonaws:aws-java-sdk-pom:1.10.34 --packages org.apache.hadoop:hadoop-aws:2.7.3 /vagrant/test_spark.py
+sudo -u hduser $SPARK_HOME/bin/spark-submit --master yarn –-conf spark.logLineage=true --conf spark.sql.warehouse.dir=\"file:///tmp/spark-warehouse\"  /vagrant/test_spark.py
+sudo -u hduser $SPARK_HOME/bin/spark-submit --master yarn –-conf spark.logLineage=true --conf spark.sql.warehouse.dir=\"file:///tmp/spark-warehouse\" --packages za.co.absa.spline.agent.spark:spark-2.4-spline-agent-bundle_2.12:3.1 --conf "spark.sql.queryExecutionListeners=za.co.absa.spline.harvester.listener.SplineQueryExecutionListener" --conf "spark.spline.lineageDispatcher.http.producer.url=http://localhost:5000/spark" /vagrant/test_spark.py
+sudo -u hduser $SPARK_HOME/bin/spark-submit --master yarn --packages za.co.absa.spline.agent.spark:spark-2.4-spline-agent-bundle_2.12:3.1 --conf spark.sql.queryExecutionListeners=za.co.absa.spline.harvester.listener.SplineQueryExecutionListener --conf spark.spline.lineageDispatcher=console --conf spark.spline.lineageDispatcher.console.className=za.co.absa.spline.harvester.dispatcher.ConsoleLineageDispatcher --conf spark.spline.lineageDispatcher.console.stream=OUT python_example.py
+
+
+
 }
 
 setup_variables

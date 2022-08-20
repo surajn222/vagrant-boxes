@@ -18,3 +18,5 @@ socat UNIX-LISTEN:/mysql.sock,fork,\
 reuseaddr,unlink-early,user=mysql,group=mysql,mode=777 \
 TCP:127.0.0.1:3306 &
 
+
+socat UNIX-LISTEN:/tmp/mysql.sock,fork,reuseaddr,unlink-early,user=mysql,group=mysql,mode=777 TCP:mariadb-10-2-43.caibzivvbsoy.us-west-2.rds.amazonaws.com:3306

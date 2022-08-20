@@ -72,6 +72,7 @@ sudo -u $hdUserName cat /home/$hdUserName/.ssh/id_rsa.pub >> /home/$hdUserName/.
 download_hadoop()
 {
 #Download hadoop2.7.3 from apache
+sudo rm -rf hadoop-2.7.3.tar.gz
 sudo wget https://archive.apache.org/dist/hadoop/core/hadoop-2.7.3/hadoop-2.7.3.tar.gz  
 sudo tar xvfz hadoop-2.7.3.tar.gz
 
@@ -151,12 +152,15 @@ HADOOP_HOME="/usr/local/lib/hadoop"
 
 cat <<EOT >> /home/$hdUserName/.bashrc
 export HADOOP_HOME='/usr/local/lib/hadoop'
-HADOOP_HOME="/usr/local/lib/hadoop"
-export PATH=$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:/usr/local/lib/hadoop/bin/
+#export HADOOP_HOME="/usr/local/lib/hadoop"
+export PATH=$PATH:${HADOOP_HOME}:${HADOOP_HOME}:/usr/local/lib/hadoop/lib:/home/hduser/spark-3.1.2-bin-hadoop2.7/jars/
 export HADOOP_MAPRED_HOME=${HADOOP_HOME}
 export HADOOP_COMMON_HOME=${HADOOP_HOME}
 export HADOOP_HDFS_HOME=${HADOOP_HOME}
 export YARN_HOME=${HADOOP_HOME}
+export HADOOP_PREFIX=${HADOOP_HOME}/libexec
+export HADOOP_CLASSPATH=/home/hduser/spark-3.1.2-bin-hadoop2.7/jars/:$HADOOP_CLASSPATH
+export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/"
 EOT
 
 source /home/$hdUserName/.bashrc
@@ -165,10 +169,13 @@ source /home/$hdUserName/.bashrc
 
 start_hadoop()
 {
-sudo -u hduser /usr/local/lib/hadoop/bin/hdfs namenode -format
+sudo -u hduser rm -rf /home/hduser/hadoop/app/hadoop/tmp/dfs/data/current/VERSION
+sudo -u hduser /usr/local/lib/hadoop/bin/hdfs namenode -format -clusterID CID-5f7e9b58-607c-4795-81d3-ccd60e654ae5
+#sudo -u hduser /usr/local/lib/hadoop/bin/hdfs datanode -format -regular -clusterID CID-5f7e9b58-607c-4795-81d3-ccd60e654ae5
+sudo -u hduser /usr/local/lib/hadoop/sbin/stop-all.sh
 sudo -u hduser /usr/local/lib/hadoop/sbin/start-dfs.sh
 sudo -u hduser /usr/local/lib/hadoop/sbin/start-yarn.sh
-
+#sudo -u hduser /usr/local/lib/hadoop/sbin/hadoop-daemon.sh start datanode
 
 
 }
