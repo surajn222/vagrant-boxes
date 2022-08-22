@@ -1,0 +1,94 @@
+    1  clear
+    2  pwd
+    3  ls
+    4  cd /opt
+    5  ls
+    6  wget https://archive.apache.org/dist/flume/1.9.0/apache-flume-1.9.0-bin.tar.gz
+    7  ls
+    8  tar xzf apache-flume-1.9.0-bin.tar.gz 
+    9  ls
+   10  cd apache-flume-1.9.0-bin
+   11  ls
+   12  vim ~/.bashrc 
+   13  source ~/.bashrc 
+   14  flume-ng version
+   15  apt-get install java
+   16  apt-get search openjdk
+   17  apt install default-jdk
+   18  apt install openjdk-8-jdk
+   19  apt-get update
+   20  apt install openjdk-8-jdk
+   21  ls
+   22  flume-ng version
+   23  ls
+   24  vim flume.conf
+   25  bin/flume-ng agent –conf ./conf/ -f conf/flume.conf -n agent1 -Dflume.root.logger=DEBUG
+   26  echo $JAVA_HOME
+   27  bin/flume-ng agent
+   28  vim ~/.bashrc 
+   29  whereis java
+   30  cd /usr/bin/
+   31  ls
+   32  find / -name java
+   33  cd /usr/lib/jvm/java-8-openjdk-amd64/
+   34  ls
+   35  pwd
+   36  ls
+   37  vim ~/.bashrc 
+   38  source ~/.bashrc 
+   39  java -versiob
+   40  java -versio
+   41  java -versin
+   42  java -version
+   43  cd /opt
+   44  ls
+   45  cd apache-flume-1.9.0-bin
+   46  ls
+   47  bin/flume-ng agent
+   48  bin/flume-ng agent --conf ./conf/
+   49  ls
+   50  cd conf
+   51  ls
+   52  bin/flume-ng 
+   53  bin/flume-ng agent --help
+   54  cd ..
+   55  ls
+   56  bin/flume-ng agent --help
+   57  bin/flume-ng 
+   58  bin/flume-ng agent help
+   59  bin/flume-ng 
+   60  ls
+   61  cd bin
+   62  ls
+   63  cd ..
+   64  ls
+   65  cd conf
+   66  ls
+   67  vim flume.conf
+   68  ls
+   69  cd ..
+   70  ls
+   71  bin/flume-ng agent --conf ./conf/ -f ./conf/flume.conf 
+   72  bin/flume-ng agent --conf ./conf/ -f ./conf/flume.conf -n agent1
+   73  bin/flume-ng agent --conf ./conf/ -f ./conf/flume.conf -n agent1 -Dflume.root.logger=DEBUG
+   74  ls
+   75  cd conf
+   76  ls
+   77  vim flume.conf 
+   78  ls
+   79  vim flume.conf 
+   80  bin/flume-ng agent --conf ./conf/ -f ./conf/flume.conf -n agent1 -Dflume.root.logger=DEBUG
+   81  cd ..
+   82  bin/flume-ng agent --conf ./conf/ -f ./conf/flume.conf -n agent1 -Dflume.root.logger=DEBUG
+   83  bin/flume-ng agent help
+   84  bin/flume-ng help
+   85  bin/flume-ng agent -f ./conf/flume.conf -n agent1 -Dflume.root.logger=DEBUG
+   86  pwd
+   87  bin/flume-ng agent -f /opt/apache-flume-1.9.0-bin/conf/flume.conf -n agent1 -Dflume.root.logger=DEBUG
+   88  flume-ng agent --conf conf --conf-file conf/flume.properties --name a1 Dflume.root.logger=INFO,console
+   89  flume-ng agent --conf conf --conf-file conf/flume.conf --name a1 Dflume.root.logger=INFO,console
+   90  vim flume.conf 
+   91  ls
+   92  cp flume.conf conf/
+   93  flume-ng agent --conf conf --conf-file conf/flume.conf --name a1 Dflume.root.logger=INFO,console
+   94  history > /vagrant/commands.log
