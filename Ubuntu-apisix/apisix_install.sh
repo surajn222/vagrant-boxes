@@ -12,7 +12,7 @@ sudo yum install -y https://repos.apiseven.com/packages/centos/apache-apisix-rep
 sudo yum-config-manager --add-repo https://repos.apiseven.com/packages/centos/apache-apisix.repo
 yum install apisix -y
 yum install apisix-dashboard.x86_64 -y
-wget
+wget https://raw.githubusercontent.com/surajn222/vagrant-boxes/main/Ubuntu-apisix/conf/conf.yaml
 wget /opt/conf.yaml /usr/local/apisix/dashboard/conf/
 sudo service apisix status
 sudo service apisix stop
