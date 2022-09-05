@@ -10,6 +10,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 9443, host: 9443
   config.vm.network :forwarded_port, guest: 9091, host: 9091
   config.vm.define "centos-apisix"
+  config.vm.provision "shell", path: "./apisix_install.sh"
   config.vm.provider "virtualbox" do |v|
      v.customize ["modifyvm", :id, "--memory", "2048"]
      v.customize ["modifyvm", :id, "--cpus", "2"]

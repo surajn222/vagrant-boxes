@@ -1,0 +1,43 @@
+4  yum update -y
+6  yum install wget
+9  sudo yum install yum-utils
+73  yum install net-tools
+5  wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+7  wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+8  sudo rpm -ivh epel-release-latest-7.noarch.rpm
+10  sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
+11  sudo yum install -y etcd openresty curl git gcc luarocks lua-devel
+12  ETCD_VERSION='3.4.13'
+13  wget https://github.com/etcd-io/etcd/releases/download/v${ETCD_VERSION}/etcd-v${ETCD_VERSION}-linux-amd64.tar.gz
+14  tar -xvf etcd-v${ETCD_VERSION}-linux-amd64.tar.gz &&   cd etcd-v${ETCD_VERSION}-linux-amd64 &&   sudo cp -a etcd etcdctl /usr/bin/
+15  nohup etcd >/tmp/etcd.log 2>&1 &
+25   sudo yum install -y https://repos.apiseven.com/packages/centos/apache-apisix-repo-1.0-1.noarch.rpm
+28   sudo yum-config-manager --add-repo https://repos.apiseven.com/packages/centos/apache-apisix.repo
+29  sudo yum info -y apisix
+30  sudo yum list available | grep apisix
+32  yum install apisix -y
+33  yum remove openresty-1.21.4.1-1.el7.x86_64
+34  yum install apisix -y
+35  sudo service apisix status
+36  sudo service apisix start
+37  sudo yum list available | grep apisix
+38  yum install apisix-dashboard.x86_64 -y
+39  sudo service apisix-dashboard status
+43  sudo service apisix status
+45  service --status-all | grep apisix
+46  service --status-all
+47  chkconfig --list
+48  chkconfig --list
+49  systemctl list-units --type=service
+50  systemctl list-units --type=service | grep apisix
+51  sudo service apisix-dashboard status
+52  sudo service apisix-dashboard start
+54  yum install apisix-dashboard.x86_64 -y
+55  sudo service apisix-dashboard-2.9.0-0.el7.x86_64 status
+58  ps -elf | grep apisix
+60  cd /usr/local/apisix/
+75  netstat -peanut | grep 2860
+76  curl localhost:9080
+77  curl localhost:9090
+78  curl localhost:9091
+79  curl localhost:9443
