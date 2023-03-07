@@ -9,8 +9,11 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 9090, host: 9090
   config.vm.network :forwarded_port, guest: 9443, host: 9443
   config.vm.network :forwarded_port, guest: 9091, host: 9091
+  config.vm.network :forwarded_port, guest: 8000, host: 8000
+  config.vm.network :forwarded_port, guest: 43946, host: 43946
   config.vm.define "centos-apisix"
-  config.vm.provision "shell", path: "./apisix_install.sh"
+  #config.vm.provision "shell", path: "./apisix_install.sh"
+  # config.vbguest.installer_options = { allow_kernel_upgrade: true }
   config.vm.provider "virtualbox" do |v|
      v.customize ["modifyvm", :id, "--memory", "2048"]
      v.customize ["modifyvm", :id, "--cpus", "2"]

@@ -8,7 +8,7 @@ import sys
 bootstrap_servers = ['localhost:9092']
 
 # Define topic name from where the message will recieve
-topicName = 'First_Topic'
+topicName = 'topic2'
 
 # Initialize consumer variable
 consumer = KafkaConsumer (topicName, group_id ='group1',bootstrap_servers =

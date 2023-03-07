@@ -1,4 +1,6 @@
 #Install Kafka
+sudo apt-get dist-upgrade -y
+
 update_and_setup_system()
 {
 sudo apt update -y
@@ -116,6 +118,7 @@ pwd
 sudo apt-get install maven -y
 mvn clean -DskipTests=true package install
 #java --add-opens=java.base/sun.nio.ch=ALL-UNNAMED -jar target/kafdrop-3.28.0-SNAPSHOT.jar --kafka.brokerConnect=10.0.2.2:9093 &> kafdrop.log &
+java --add-opens=java.base/sun.nio.ch=ALL-UNNAMED -jar target/kafdrop-3.28.0-SNAPSHOT.jar --kafka.brokerConnect=10.0.2.2:9093 &> kafdrop.log &
 }
 
 add_data()

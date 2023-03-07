@@ -1,1 +1,10 @@
 kubectl run kafdrop --image=obsidiandynamics/kafdrop --env KAFKA_BROKERCONNECT=ib-kafka-0:9092 --env JVM_OPTS="-Xms32M -Xmx64M"  --env SERVER_SERVLET_CONTEXTPATH="/"  --port=9000 -n ib-kafka
+
+
+
+
+docker run --rm -p 9000:9000 \
+    -e KAFKA_BROKERCONNECT=172.19.0.2:9092 \
+    -e JVM_OPTS="-Xms32M -Xmx64M" \
+    -e SERVER_SERVLET_CONTEXTPATH="/" \
+    obsidiandynamics/kafdrop:latest
