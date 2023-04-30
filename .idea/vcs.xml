@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Ubuntu - kafka/kafka-ui" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Ubuntu-postgres/docker-compose/postgresDBSamples" vcs="Git" />
   </component>
 </project>

@@ -1,6 +1,7 @@
 # Import KafkaProducer from Kafka library
 from kafka import KafkaProducer
 import sys
+import time
 # Define server with port
 bootstrap_servers = ['localhost:9092']
 
@@ -21,6 +22,8 @@ for content in list_content:
 		print("Sending " + str(message) +  " to " + str(topic))
 		producer.send(topic, str.encode(message))
 		print("Sending " + str(message) + " to " + str(topic))
+		time.sleep(0.2)
 
 producer.flush()
+producer.close()
 

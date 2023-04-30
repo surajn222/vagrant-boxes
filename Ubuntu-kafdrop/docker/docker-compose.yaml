@@ -24,14 +24,52 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_HEAP_OPTS: -Xmx300M -Xms300M
       KAFKA_BROKER_ID: 1
-      KAFKA_LISTENERS: PLAINTEXT://:9092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092
+
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:29092,OUTSIDE://:9092
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:29092,OUTSIDE://127.0.0.1:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+
+
+#      KAFKA_LISTENERS: PLAINTEXT://:9092
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092
       ALLOW_PLAINTEXT_LISTENER: "yes"
     deploy:
       resources:
         limits:
-          cpus: '0.1'
+          cpus: '1'
+          memory: 1024M
+        reservations:
+          cpus: '1'
+          memory: 1024M
+
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:latest
+    depends_on:
+      - kafka
+    ports:
+      - 8081:8080
+    environment:
+      DYNAMIC_CONFIG_ENABLED: "true"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
           memory: 512M
         reservations:
-          cpus: '0.1'
+          cpus: '0.5'
           memory: 512M
+    volumes:
+      - ./config.yml:/etc/kafkaui/dynamic_config.yaml
+
+#  ubuntu-sleep:
+#    container_name: ubuntu-network-troubleshooting
+#    image: weibeld/ubuntu-networking
+#    command:
+#      - "sleep"
+#      - "99999999999"
+
+
+#    securityContext:
+#      privileged: true

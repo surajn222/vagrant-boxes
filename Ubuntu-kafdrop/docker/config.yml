@@ -1,0 +1,10 @@
+auth:
+  type: DISABLED
+kafka:
+  clusters:
+  - bootstrapServers: kafka:29092
+    name: test
+    properties: {}
+    readOnly: false
+rbac:
+  roles: []

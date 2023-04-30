@@ -12,3 +12,7 @@ RUN cp postgresDBSamples/worldDB-1.0/world.sql /docker-entrypoint-initdb.d/
 ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=postgres
 #COPY resources/*.sql /docker-entrypoint-initdb.d/
+
+
+psql -U postgres -d test -f world.sql
+
